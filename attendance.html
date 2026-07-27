@@ -18,28 +18,19 @@
 </head>
 <body>
   <!--
-    Desktop: embeds the Apps Script tracker in an iframe, which hides Google's automatic
-    "created by a Google Apps Script user" banner.
-
-    Mobile (iOS Safari/Chrome, Android): iframing an Apps Script /exec URL is unreliable --
-    it can silently fail to load. So on mobile we skip the iframe entirely and just redirect
-    straight to the real URL. Mobile users will see Google's small blue banner (dismissible),
-    which is a fair trade for the page actually loading every time.
+    Embeds the Apps Script tracker in an iframe on every device, which hides Google's
+    automatic "created by a Google Apps Script user" banner. The banner-on-mobile issue
+    earlier was caused by the wrapper pointing at a stale, wrong deployment URL, not by
+    mobile being unable to load the iframe -- so this now just iframes it everywhere.
 
     If the Apps Script Web App URL ever changes (a brand-new deployment rather than
-    "New version" on the existing one), update APP_URL below to match.
+    "New version" on the existing one), update the src below to match.
   -->
-  <script>
-    var APP_URL = "https://script.google.com/macros/s/AKfycbyjZqtg7wuatznn-A7_t6AXq5f6VCOLIwu5apLY7RlF2y-DIfH1kf9oMV3D9Eu_oDFT/exec";
-    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    if (isMobile) {
-      window.location.replace(APP_URL);
-    } else {
-      document.write(
-        '<iframe src="' + APP_URL + '" title="West Clovis Monsters Attendance Tracker" allow="clipboard-write"></iframe>'
-      );
-    }
-  </script>
+  <iframe
+    src="https://script.google.com/macros/s/AKfycbyjZqtg7wuatznn-A7_t6AXq5f6VCOLIwu5apLY7RlF2y-DIfH1kf9oMV3D9Eu_oDFT/exec"
+    title="West Clovis Monsters Attendance Tracker"
+    allow="clipboard-write"
+  ></iframe>
 
   <noscript>
     <div class="fallback">
