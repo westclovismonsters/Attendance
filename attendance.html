@@ -3,40 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="0; url=https://script.google.com/macros/s/AKfycbztBKXQSnrEXbaYlD-5bPOkwzhYEi8AOVi9GFuZag6vGp-_HbhKeTAQO0lU3S7mVyKO/exec">
 <title>West Clovis Monsters | Attendance</title>
 <style>
-  html, body { margin:0; padding:0; height:100%; background:#FBF8F2; }
-  iframe { border:0; width:100%; height:100vh; display:block; }
-  .fallback {
-    font-family: Arial, sans-serif; text-align:center; padding: 60px 20px; color:#6e0006;
-  }
-  .fallback a {
-    display:inline-block; margin-top:16px; padding:12px 24px; background:#980008; color:#fff;
-    text-decoration:none; border-radius:6px; font-weight:bold;
-  }
+  html, body { margin:0; padding:0; height:100%; background:#FBF8F2; font-family: Arial, sans-serif; }
+  .wrap { display:flex; align-items:center; justify-content:center; height:100vh; text-align:center; padding:20px; }
+  a.btn { display:inline-block; margin-top:16px; padding:12px 24px; background:#980008; color:#fff;
+          text-decoration:none; border-radius:6px; font-weight:bold; }
+  p { color:#6e0006; }
 </style>
 </head>
 <body>
   <!--
-    Embeds the Apps Script tracker in an iframe on every device, which hides Google's
-    automatic "created by a Google Apps Script user" banner. The banner-on-mobile issue
-    earlier was caused by the wrapper pointing at a stale, wrong deployment URL, not by
-    mobile being unable to load the iframe -- so this now just iframes it everywhere.
+    This page is a stable, permanent front door: westclovismonsters.github.io/Attendance/attendance.html
+    It always forwards to the real Apps Script tracker below.
+
+    We tried embedding the tracker in an invisible iframe here (to hide Google's small
+    "created by a Google Apps Script user" banner), but that approach is unreliable on
+    mobile Safari and increasingly Chrome: those browsers block third-party cookies that
+    Google's session-verification sometimes needs when a script.google.com page is framed
+    from a different site, which causes it to fail and show a broken "Google Drive: file
+    not found" error instead of the tracker. That's not fixable from our side -- it's a
+    browser privacy restriction on cross-site iframes, not a bug in this file or in the
+    deployment.
+
+    So instead this page just forwards straight to the real URL. Same GitHub link for
+    coaches either way, it just lands on the real page a moment later instead of staying
+    hidden in an iframe. The small blue Google banner will show -- that's the accepted
+    trade-off for the page loading reliably on every device, every time.
 
     If the Apps Script Web App URL ever changes (a brand-new deployment rather than
-    "New version" on the existing one), update the src below to match.
+    "New version" on the existing one), update BOTH the <meta refresh> tag above AND
+    APP_URL / the link below to match.
   -->
-  <iframe
-    src="https://script.google.com/macros/s/AKfycbyjZqtg7wuatznn-A7_t6AXq5f6VCOLIwu5apLY7RlF2y-DIfH1kf9oMV3D9Eu_oDFT/exec"
-    title="West Clovis Monsters Attendance Tracker"
-    allow="clipboard-write"
-  ></iframe>
+  <script>
+    var APP_URL = "https://script.google.com/macros/s/AKfycbztBKXQSnrEXbaYlD-5bPOkwzhYEi8AOVi9GFuZag6vGp-_HbhKeTAQO0lU3S7mVyKO/exec";
+    window.location.replace(APP_URL);
+  </script>
 
-  <noscript>
-    <div class="fallback">
-      <p>This page needs JavaScript enabled to load the attendance tracker.</p>
-      <a href="https://script.google.com/macros/s/AKfycbyjZqtg7wuatznn-A7_t6AXq5f6VCOLIwu5apLY7RlF2y-DIfH1kf9oMV3D9Eu_oDFT/exec">Open Attendance Tracker</a>
+  <div class="wrap">
+    <div>
+      <p>Loading the West Clovis Monsters Attendance Tracker…</p>
+      <a class="btn" href="https://script.google.com/macros/s/AKfycbztBKXQSnrEXbaYlD-5bPOkwzhYEi8AOVi9GFuZag6vGp-_HbhKeTAQO0lU3S7mVyKO/exec">Tap here if it doesn't load automatically</a>
     </div>
-  </noscript>
+  </div>
 </body>
 </html>
